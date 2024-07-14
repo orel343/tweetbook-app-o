@@ -10,7 +10,7 @@ interface StoryModalType {
 const storyStyles = {
   objectFit: 'cover',
   width: '100%',
-  height: ' 100%',
+  height: '100%',
 };
 
 const StoryModal: React.FC<StoryModalType> = ({ setStoryViewMode }) => {
@@ -19,18 +19,18 @@ const StoryModal: React.FC<StoryModalType> = ({ setStoryViewMode }) => {
 
   React.useEffect(() => {
     getStoryImages();
-  }, []);
+  }, [getStoryImages]);
 
   return (
     <div
       className={s.root}
       onClick={(e) => {
-        if (!containerRef || !containerRef.current!.contains(e.target as Node)) {
+        if (!containerRef.current?.contains(e.target as Node)) {
           setStoryViewMode(false);
         }
       }}>
       <div ref={containerRef} className={s.container}>
-        {storyImages && (
+        {storyImages.length > 0 && (
           <Stories
             stories={storyImages}
             defaultInterval={5500}
